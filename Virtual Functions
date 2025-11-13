@@ -1,0 +1,68 @@
+🐾 Virtual Functions & Override — Example with Animals
+
+#include <iostream>
+using namespace std;
+
+// Base Class
+class Animal {
+public:
+    virtual void makeSound() {      // Virtual Function
+        cout << "Some generic animal sound..." << endl;
+    }
+
+    virtual ~Animal() {             // Virtual destructor (best practice)
+        cout << "Animal destroyed." << endl;
+    }
+};
+
+// Derived Class - Dog
+class Dog : public Animal {
+public:
+    void makeSound() override {     // Override ensures correct overriding
+        cout << "Dog says: Woof! Woof!" << endl;
+    }
+
+    ~Dog() {
+        cout << "Dog destroyed." << endl;
+    }
+};
+
+// Derived Class - Cat
+class Cat : public Animal {
+public:
+    void makeSound() override {
+        cout << "Cat says: Meow! Meow!" << endl;
+    }
+
+    ~Cat() {
+        cout << "Cat destroyed." << endl;
+    }
+};
+
+// Derived Class - Cow
+class Cow : public Animal {
+public:
+    void makeSound() override {
+        cout << "Cow says: Moo! Moo!" << endl;
+    }
+
+    ~Cow() {
+        cout << "Cow destroyed." << endl;
+    }
+};
+
+int main() {
+    Animal* animal;
+
+    animal = new Dog();
+    animal->makeSound();  // Calls Dog's version
+
+    animal = new Cat();
+    animal->makeSound();  // Calls Cat's version
+
+    animal = new Cow();
+    animal->makeSound();  // Calls Cow's version
+
+    delete animal;
+    return 0;
+}
